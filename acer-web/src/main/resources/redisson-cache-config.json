@@ -1,0 +1,30 @@
+{
+  "TaxSubjectQuery":{
+    "ttl": 604800000,
+    "maxIdleTime": 302400000
+  },
+  "LandPriceInfoList":{
+    "ttl": 604800000,
+    "maxIdleTime": 302400000
+  },
+  "OutputInvCollectionList":{
+    "ttl": 604800000,
+    "maxIdleTime": 302400000
+  },
+  "TaxPreferencesList":{
+    "ttl": 604800000,
+    "maxIdleTime": 302400000
+  },
+  "AccountMain":{
+    "ttl": 604800000,
+    "maxIdleTime": 302400000
+  },
+  "SysUserServiceSelectById":{
+    "ttl": 604800000,
+    "maxIdleTime": 302400000
+  },
+  "userLogin":{
+    "ttl": 3600000,
+    "maxIdleTime": 1800000
+  }
+}

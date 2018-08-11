@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<parent>
+    <artifactId>blog.acer</artifactId>
+    <groupId>blog.acer</groupId>
+    <version>1.0</version>
+</parent>
+    <artifactId>acer-web</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>war</packaging>
+<dependencies>
+    <dependency>
+        <groupId>blog.acer</groupId>
+        <artifactId>acer-excelUtils</artifactId>
+        <version>${project.version}</version>
+    </dependency>
+
+
+    <dependency>
+        <groupId>blog.acer</groupId>
+        <artifactId>acer-common</artifactId>
+        <version>${acer.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>blog.acer</groupId>
+        <artifactId>acer-core</artifactId>
+        <version>${acer.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${swagger.version}</version>
+    </dependency>
+</dependencies>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.3.2</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+    </plugins>
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </resource>
+    </resources>
+</build>
+</project>

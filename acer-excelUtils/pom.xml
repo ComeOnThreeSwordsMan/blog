@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<parent>
+    <artifactId>blog.acer</artifactId>
+    <groupId>blog.acer</groupId>
+    <version>1.0</version>
+</parent>
+<modelVersion>4.0.0</modelVersion>
+
+<artifactId>acer-excelUtils</artifactId>
+<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <poi-version>3.8</poi-version>
+    <servlet-version>3.0.1</servlet-version>
+    <log4j-version>1.2.9</log4j-version>
+    <beanutils-version>1.9.3</beanutils-version>
+    <xerces-version>2.11.0</xerces-version>
+</properties>
+
+<dependencies>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>3.8.1</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/net.sourceforge.javacsv/javacsv -->
+    <dependency>
+        <groupId>net.sourceforge.javacsv</groupId>
+        <artifactId>javacsv</artifactId>
+        <version>2.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>${poi-version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>${poi-version}</version>
+    </dependency>
+    <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>${beanutils-version}</version>
+    </dependency>
+    <dependency>
+        <groupId>xerces</groupId>
+        <artifactId>xercesImpl</artifactId>
+        <version>${xerces-version}</version>
+    </dependency>
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${servlet-version}</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${log4j-version}</version>
+        <scope>provided</scope>
+    </dependency>
+
+
+
+    <dependency>
+        <groupId>org.yaml</groupId>
+        <artifactId>snakeyaml</artifactId>
+        <version>1.10</version>
+    </dependency>
+</dependencies>
+
+</project>

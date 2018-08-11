@@ -1,0 +1,94 @@
+##package
+import com.baomidou.mybatisplus.plugins.Page;
+import com.servingcloud.vscloud.common.constant.ResponseCode;
+import com.servingcloud.vscloud.core.dto.ResponseDTO;
+import com.servingcloud.vscloud.core.aspect.Permission;
+import com.servingcloud.vscloud.core.aspect.PermissionGroup;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
+##${package.Controller}
+##        ;
+#if(${restControllerStyle})
+#else
+#end
+#if(${superControllerClassPackage})
+##    ${superControllerClassPackage};
+#end
+
+import static com.servingcloud.vscloud.common.constant.PermissionConstant.*;
+/**
+ * $!{table.comment} 前端控制器
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${restControllerStyle})
+@RestController
+@Slf4j
+@Api(description = "$!{table.comment}-康")
+@PermissionGroup(moduleid = MODULE_, name = "$!{table.comment}")
+#else
+@Controller
+#end
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+#if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
+#else
+public class ${table.controllerName} {
+#end
+
+    @Autowired
+    private ${table.serviceName} ${table.serviceName};
+
+    @ApiOperation(value = "查询列表(分页)")
+    @GetMapping("/list")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header" , name = "Authorization" , value = "凭证" , required = true, dataType = "string")})
+    @Permission(actionid = ACTION_PAGE, name = "列表")
+    public ResponseDTO<Page<${entity}>> list(Page page){
+        return new ResponseDTO<>(ResponseCode.OK,${table.serviceName}.selectPage(page));
+    }
+
+    @ApiOperation(value = "根据id查询")
+    @GetMapping("/find/{id}")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header" , name = "Authorization" , value = "凭证" , required = true, dataType = "string")})
+    @Permission(actionid = ACTION_PAGE, name = "查看")
+    public ResponseDTO<${entity}> find(@PathVariable("id") Long id){
+        return new ResponseDTO<>(ResponseCode.OK,${table.serviceName}.selectById(id));
+    }
+
+    @ApiOperation(value = "添加")
+    @PostMapping("/add")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header" , name = "Authorization" , value = "凭证" , required = true, dataType = "string")})
+    @Permission(actionid = ACTION_CREATE, name = "增加")
+    public ResponseDTO add(@RequestBody @Valid ${entity} ${entity.toLowerCase()}){
+        boolean b= ${table.serviceName}.insert(${entity.toLowerCase()});
+        return new ResponseDTO(b?ResponseCode.OK:ResponseCode.INSERT_ERROR);
+    }
+
+    @ApiOperation(value = "修改")
+    @PutMapping("/update")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header" , name = "Authorization" , value = "凭证" , required = true, dataType = "string")})
+    @Permission(actionid = ACTION_UPDATE, name = "修改")
+    public ResponseDTO update(@RequestBody @Valid ${entity} ${entity.toLowerCase()}){
+        boolean b= ${table.serviceName}.updateById(${entity.toLowerCase()});
+        return new ResponseDTO(b?ResponseCode.OK:ResponseCode.UPDATE_ERROR);
+    }
+
+    @DeleteMapping("delete/{id}")
+    @ApiOperation(value = "删除")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header" , name = "Authorization" , value = "凭证" , required = true, dataType = "string")})
+    @Permission(actionid = ACTION_DELETE, name = "删除")
+    public ResponseDTO delete(@PathVariable("id") Long id){
+        boolean b= ${table.serviceName}.deleteById(id);
+        return new ResponseDTO(b?ResponseCode.OK:ResponseCode.DATA_NOT_EXIST);
+    }
+}

@@ -1,0 +1,82 @@
+# 碧桂园测试环境
+#spring
+spring:
+  devtools:
+    restart:
+      enabled: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://10.10.179.81:3306/vscloud?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: dfsdfs8edsRT
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: pool-vscloud
+      connectionTestQuery: SELECT 1
+      maximum-pool-size: 50
+      minimum-idle: 10
+  kafka:
+    bootstrap-servers: 10.10.179.67:9092
+    consumer:
+      group-id: myGroup
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      auto-commit-interval: 100
+    template:
+      default-topic: test-topic
+    listener:
+      concurrency: 3
+    producer:
+      batch-size: 1000
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.servingcloud.vscloud.core.entity
+  typeEnumsPackage: com.servingcloud.vscloud.core.enums
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 2
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 2
+    #驼峰下划线转换
+    db-column-underline: true
+    #刷新mapper 调试神器
+    refresh-mapper: true
+    #数据库大写下划线转换
+    #capital-mode: true
+    #序列接口实现类配置
+    #key-generator: com.servingcloud.vscloud.core.xxx
+    #逻辑删除配置
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+    #自定义填充策略接口实现
+    meta-object-handler: com.servingcloud.vscloud.core.handler.MyMetaObjectHandler
+    #自定义SQL注入器
+    #sql-injector: com.servingcloud.vscloud.core
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+logging:
+  config: classpath:logback-spring.xml
+  level: info
+
+ftp:
+  host: 127.0.0.1
+  port: 21
+  username: vsftpdguest
+  password: 123456
+  basePath: ftp
+
+topicName: topic-uat
+topicFk: fk-uat
+
+api:
+  url: http://10.10.179.67:82/api
+cas_server_url_prefix: http://ssotest.countrygarden.com.cn:8080/sso/
+bipPath: http://ekptestv12.countrygarden.com.cn:8080/
+swagger.show: true

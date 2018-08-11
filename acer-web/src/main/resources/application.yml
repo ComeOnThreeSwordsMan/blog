@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+  http:
+    encoding:
+      force: true
+server:
+  port: 8080
+
+#  ssl:
+#    key-store: classpath:keystore.p12
+#    key-store-password: vscloud@ssl2017
+#    key-store-type: PKCS12
+#    key-alias: vscloud-ssl-key
+redis:
+  redisson-path: redisson.yml
