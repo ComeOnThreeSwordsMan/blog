@@ -1,5 +1,6 @@
 package com.acfun.core.service.user;
 
+import com.acfun.common.constant.SessionKey;
 import com.acfun.core.dto.ResponseDTO;
 import com.acfun.core.entity.user.SysUser;
 import com.acfun.core.enums.ResponseCode;
@@ -58,9 +59,25 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
         if(!user.getPassword().equals(DigestUtils.md5Hex(sysUser.getPassword()))){
             return new ResponseDTO<>(ResponseCode.WRONG_OLD_PASSWORD);
         }
-        user.setPassword("*******");
         HttpSession session = SessionUtil.getSession();
         session.setAttribute("user",user);
+        return new ResponseDTO<>(ResponseCode.LOGIN_SUCCESS);
+    }
+
+    /**
+     * 修改用户
+     *
+     * @param sysUser 用户
+     * @return 修改用户
+     */
+    @Override
+    public ResponseDTO<String> set(SysUser sysUser) {
+        SysUser user = selectById(sysUser);
+        if(user!=null){
+            updateById(sysUser);
+            SessionUtil.getSession().setAttribute(SessionKey.USER,sysUser);
+            return new ResponseDTO<>(ResponseCode.SET_SUCCESS);
+        }
         return new ResponseDTO<>(ResponseCode.LOGIN_SUCCESS);
     }
 }

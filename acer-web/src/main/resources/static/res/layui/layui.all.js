@@ -4382,16 +4382,16 @@ layui.define("layer", function (e) {
                     RegExp("\\w\\.(" + (h || "jpg|png|gif|bmp|jpeg$") + ")", "i").test(escape(t)) || (n = !0)
                 }), n) return o.msg("选择的图片中包含不支持的格式"), r.value = ""
         }
-        if (l.size > 0 && !(a.ie && a.ie < 10)) {
-            var F;
-            if (l.number && o.fileLength > l.number) return o.msg("同时最多只能上传 " + o.fileLength + " 个");
-            if (layui.each(o.chooseFiles, function (e, t) {
-                if (t.size > 1024 * l.size) {
-                    var i = l.size / 1024;
-                    i = i >= 1 ? Math.floor(i) + (i % 1 > 0 ? i.toFixed(1) : 0) + "MB" : l.size + "KB", r.value = "", F = i
-                }
-            }), F) return o.msg("文件不能超过" + F)
-        }
+        // if (l.size > 0 && !(a.ie && a.ie < 10)) {
+        //     var F;
+        //     if (l.number && o.fileLength > l.number) return o.msg("同时最多只能上传 " + o.fileLength + " 个");
+        //     if (layui.each(o.chooseFiles, function (e, t) {
+        //         if (t.size > 1024 * l.size) {
+        //             var i = l.size / 1024;
+        //             i = i >= 1 ? Math.floor(i) + (i % 1 > 0 ? i.toFixed(1) : 0) + "MB" : l.size + "KB", r.value = "", F = i
+        //         }
+        //     }), F) return o.msg("文件不能超过" + F)
+        // }
         y()
     }, p.prototype.events = function () {
         var e = this, i = e.config, o = function (t) {

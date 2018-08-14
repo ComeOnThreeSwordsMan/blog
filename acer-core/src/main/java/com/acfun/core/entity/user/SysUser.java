@@ -34,7 +34,6 @@ public class SysUser extends SuperEntity {
      * 密码
      */
 	@ApiModelProperty("密码")
-    @NotBlank
 	private String password;
 
     /**
@@ -43,4 +42,21 @@ public class SysUser extends SuperEntity {
     @ApiModelProperty("邮箱")
     private String email;
 
+    /**
+     * 城市
+     */
+    @ApiModelProperty("城市")
+    private String city;
+
+    /**
+     * 个性签名
+     */
+    @ApiModelProperty("个性签名")
+    private String sign;
+
+    /**
+     * 头象
+     */
+    @ApiModelProperty("头像")
+    private String photo;
 }

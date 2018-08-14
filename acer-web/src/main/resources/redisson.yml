@@ -8,14 +8,11 @@ singleServerConfig:
   retryInterval: 1500
   reconnectionTimeout: 3000
   failedAttempts: 3
-#  password: sc2016
-#  subscriptionsPerConnection: 5
-#  clientName: client
-#  address: redis://120.25.216.215:6379
-#  password: 12345678
+#  password: 123456
   subscriptionsPerConnection: 5
   clientName: client
-  address: redis://127.0.0.1:6379
+#  address: redis://127.0.0.1:6379
+  address: redis://47.106.131.156:6379
   subscriptionConnectionMinimumIdleSize: 1
   subscriptionConnectionPoolSize: 50
   connectionMinimumIdleSize: 10

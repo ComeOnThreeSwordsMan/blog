@@ -24,4 +24,11 @@ public interface SysUserService extends IService<SysUser> {
      * @return 用户登陆
      */
     ResponseDTO<String>  login(SysUser sysUser);
+
+    /**
+     *  修改用户
+     * @param sysUser 用户
+     * @return 修改用户
+     */
+    ResponseDTO<String> set(SysUser sysUser);
 }

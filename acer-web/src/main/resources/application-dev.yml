@@ -18,6 +18,7 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
     mode: LEGACYHTML5
+    cache: false
 #mybatis
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
@@ -49,7 +50,8 @@ mybatis-plus:
     cache-enabled: false
 logging:
   config: classpath:logback-spring.xml
-  level: debug
+  level: debugswagger
 
 swagger.show: true
+path: D:\work\photo
 

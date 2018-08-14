@@ -21,6 +21,7 @@ public class IndexController {
         SessionUtil.setUserMap(map);
         return "index";
     }
+
     @GetMapping(value = "/")
     public String index1(Map<String, Object> map) {
         SessionUtil.setUserMap(map);
@@ -29,7 +30,23 @@ public class IndexController {
     }
 
 
+    @GetMapping(value = "/jie/detail.html")
+    public String detail(Map<String, Object> map) {
+        return ifLogin("jie/detail",map);
+    }
 
+    @GetMapping(value = "/jie/add.html")
+    public String jieAdd(Map<String, Object> map) {
+        return ifLogin("/jie/add",map);
+    }
 
+    private String ifLogin(String path,Map<String, Object> map){
+        SessionUtil.setUserMap(map);
+       if ( SessionUtil.getUser()==null){
+           return "/user/login";
+       }else{
+           return path;
+       }
+    }
 
 }

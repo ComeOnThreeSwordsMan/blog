@@ -11,10 +11,14 @@ public enum ResponseCode {
     OK(0, 0,"OK"),
     REG_SUCCESS(1,1, "注册成功"),
     LOGIN_SUCCESS(2,2, "登陆成功"),
+    SET_SUCCESS(3,3, "修改成功"),
+    UNLOAD_SUCCESS(4,4, "上传成功"),
     USER_NAME_EXIST(-201,-201, "用户名已存在"),
     EMAIL_EXIST(-202,-202 ,"邮箱已存在"),
     USER_NAME_NOT_EXIST(-203,-203, "用户不存在"),
     WRONG_OLD_PASSWORD(-204,-204, "密码错误"),
+    SET_ERR(-205,-205, "修改失败"),
+    DO_LOGIN(-206,-206, "请登陆"),
     ;
 
 

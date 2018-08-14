@@ -7,6 +7,7 @@ package com.acfun.core.util;
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpSession;
 
+import com.acfun.common.constant.SessionKey;
 import com.acfun.core.entity.user.SysUser;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -108,7 +109,7 @@ public class SessionUtil {
         getRequest().getSession().removeAttribute(name);  
     }
     public static SysUser getUser() {
-        Object user = getSession().getAttribute("user");
+        Object user = getSession().getAttribute(SessionKey.USER);
         if(user==null){
             return null;
         }
@@ -116,7 +117,7 @@ public class SessionUtil {
     }
 
     public static Long getUserId() {
-        Object user = getSession().getAttribute("user");
+        Object user = getSession().getAttribute(SessionKey.USER);
         if(user==null){
             return null;
         }
@@ -125,7 +126,7 @@ public class SessionUtil {
     }
 
     public static String getUserName() {
-        Object user = getSession().getAttribute("user");
+        Object user = getSession().getAttribute(SessionKey.USER);
         if(user==null){
             return null;
         }
@@ -136,7 +137,11 @@ public class SessionUtil {
     public static void setUserMap(Map<String, Object> map) {
         SysUser user = SessionUtil.getUser();
         if(user!=null){
-            map.put("user",user);
+            map.put(SessionKey.USER,user);
         }
     }
+    public static void setUser(SysUser user) {
+        getSession().setAttribute(SessionKey.USER,user);
+    }
+
 } 

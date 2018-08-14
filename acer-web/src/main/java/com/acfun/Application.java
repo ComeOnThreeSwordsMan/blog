@@ -4,15 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Demo class 启动类
@@ -24,26 +16,6 @@ import java.util.List;
 @SpringBootApplication
 @ServletComponentScan
 public class Application {
-
-//    @Bean
-//    public RequestMappingHandlerAdapter requestMappingHandlerAdapter(MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter) {
-//        RequestMappingHandlerAdapter requestMappingHandlerAdapter = new RequestMappingHandlerAdapter();
-//        List<HttpMessageConverter> mappingJackson2HttpMessageConverters = new ArrayList<>();
-//        mappingJackson2HttpMessageConverters.add(mappingJackson2HttpMessageConverter);
-//        requestMappingHandlerAdapter.setMessageConverters(mappingJackson2HttpMessageConverters);
-//        return requestMappingHandlerAdapter;
-//    }
-//
-//    @Bean
-//    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
-//        List<MediaType> list = new ArrayList<>();
-//
-//        list.add(new MediaType("text/html;charset=UTF-8"));
-//        list.add(new MediaType("application/x-www-form-urlencoded;charset=UTF-8"));
-//        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
-//        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(list);
-//        return mappingJackson2HttpMessageConverter;
-//    }
 
     @Bean
     ThreadPoolTaskExecutor threadPoolTaskExecutor() {

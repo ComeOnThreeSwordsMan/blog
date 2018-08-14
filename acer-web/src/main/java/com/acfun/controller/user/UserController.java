@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Map;
 
@@ -32,10 +33,13 @@ public class UserController {
     @GetMapping(value = "/user/set.html")
     public String userSet(Map<String, Object> map) {
         SysUser user = SessionUtil.getUser();
+
         if(user==null){
             return "user/login";
         }
         SessionUtil.setUserMap(map);
         return "user/set";
     }
+
+
 }
