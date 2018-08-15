@@ -33,7 +33,6 @@ public class UserController {
     @GetMapping(value = "/user/set.html")
     public String userSet(Map<String, Object> map) {
         SysUser user = SessionUtil.getUser();
-
         if(user==null){
             return "user/login";
         }

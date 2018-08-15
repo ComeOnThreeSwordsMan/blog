@@ -30,11 +30,6 @@ public class IndexController {
     }
 
 
-    @GetMapping(value = "/jie/detail.html")
-    public String detail(Map<String, Object> map) {
-        return ifLogin("jie/detail",map);
-    }
-
     @GetMapping(value = "/jie/add.html")
     public String jieAdd(Map<String, Object> map) {
         return ifLogin("/jie/add",map);

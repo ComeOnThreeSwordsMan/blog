@@ -35,16 +35,22 @@ public class OauthFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-        if (checkUri(httpServletRequest)) {
-//        if(true){//开发暂时使用
-            filterChain.doFilter(servletRequest, servletResponse);
-        } else {
-            httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
-            Resource resource = new ClassPathResource("static/index.html");
-            httpServletResponse.getWriter().write(IOUtils.toString(resource.getInputStream(), "UTF-8"));
-//            httpServletRequest.getRequestDispatcher("/tokenError").forward(servletRequest,servletResponse);
-//            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/tokenError");
+        //注入用户信息
+        Object user = httpServletRequest.getSession().getAttribute("user");
+        if(user!=null){
+            httpServletRequest.setAttribute("user",user);
         }
+        filterChain.doFilter(servletRequest, servletResponse);
+//        if (checkUri(httpServletRequest)) {
+////        if(true){//开发暂时使用
+//            filterChain.doFilter(servletRequest, servletResponse);
+//        } else {
+//            httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
+//            Resource resource = new ClassPathResource("static/index.html");
+//            httpServletResponse.getWriter().write(IOUtils.toString(resource.getInputStream(), "UTF-8"));
+////            httpServletRequest.getRequestDispatcher("/tokenError").forward(servletRequest,servletResponse);
+////            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/tokenError");
+//        }
     }
 
 
