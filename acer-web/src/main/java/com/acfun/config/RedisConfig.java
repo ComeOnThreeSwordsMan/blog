@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017. www.servingcloud.com Inc. All rights reserved.
- * 注意：本内容仅限于内部传阅，禁止外泄以及用于其他的商业目的
+ * 娉ㄦ剰锛氭湰鍐呭浠呴檺浜庡唴閮ㄤ紶闃咃紝绂佹澶栨硠浠ュ強鐢ㄤ簬鍏朵粬鐨勫晢涓氱洰鐨�
  */
 
 package com.acfun.config;
@@ -23,7 +23,9 @@ import java.io.IOException;
 
 /**
  * @author hsky www.servingcloud.com
- * @since 2017年6月5日 下午12:32:43
+ * @since 2017骞�6鏈�5鏃� 涓嬪崍12:32:43
+ * 
+ * test git commit
  */
 @Configuration
 @EnableCaching
