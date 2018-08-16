@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 /**
- * 请求日志监控
+ * 璇锋眰鏃 ュ 織鐩 戞帶  
  * @author kwer
  */
 @Aspect
@@ -37,11 +37,11 @@ public class ControllerAspect {
 
     private static final ThreadLocal<String> CURRENT_USER = new NamedThreadLocal<>("ThreadLocal user");
     /**
-     * 日志类型(info:入库,error:错误)
+     * 鏃ュ織绫诲瀷(info:鍏ュ簱,error:閿欒)
      */
     private static final String INFO = "info";
     /**
-     * 日志类型(info:入库,error:错误)
+     * 鏃ュ織绫诲瀷(info:鍏ュ簱,error:閿欒)
      */
     private static final String ERROR = "error";
 
@@ -56,13 +56,13 @@ public class ControllerAspect {
     public void before() {
         Date beginTime = DateUtil.date();
         BEGIN_TIME_THREAD_LOCAL.set(beginTime);
-        //debug模式下 显式打印开始时间用于调试
+        //debug妯″紡涓� 鏄惧紡鎵撳嵃寮�濮嬫椂闂寸敤浜庤皟璇�
         if (log.isDebugEnabled()) {
-            log.debug("开始计时: {}  URI: {}", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
+            log.debug("寮�濮嬭鏃�: {}  URI: {}", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
                     .format(beginTime), request.getRequestURI());
         }
 
-        // 可添加读取session或者token中的用户
+        // 鍙坊鍔犺鍙杝ession鎴栬�卼oken涓殑鐢ㄦ埛
       //  CURRENT_USER.set(TokenUtil.getUserIdByRequest());
 
     }
@@ -74,24 +74,24 @@ public class ControllerAspect {
     }
 
     private void saveLogInfo(JoinPoint joinPoint, Object result, String errorInfo) {
-        //日志类型(info:入库,error:错误)
+        //鏃ュ織绫诲瀷(info:鍏ュ簱,error:閿欒)
         String title = "";
-        //请求的IP
+        //璇锋眰鐨処P
         String remoteAddr = request.getRemoteAddr();
-        //请求的方法类型(post/get)
+        //璇锋眰鐨勬柟娉曠被鍨�(post/get)
         String method = request.getMethod();
         try {
             title = getControllerMethodDescription2(joinPoint);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // debu模式下打印JVM信息。
-        //得到线程绑定的局部变量（开始时间）
+        // debu妯″紡涓嬫墦鍗癑VM淇℃伅銆�
+        //寰楀埌绾跨▼缁戝畾鐨勫眬閮ㄥ彉閲忥紙寮�濮嬫椂闂达級
         long beginTime = BEGIN_TIME_THREAD_LOCAL.get().getTime();
-        //2、结束时间
+        //2銆佺粨鏉熸椂闂�
         Date endTime = DateUtil.date();
         if (log.isDebugEnabled()) {
-            log.debug("计时结束：{}  URI: {}  耗时： {}   最大内存: {}m  已分配内存: {}m  已分配内存中的剩余空间: {}m  最大可用内存: {}m",
+            log.debug("璁℃椂缁撴潫锛歿}  URI: {}  鑰楁椂锛� {}   鏈�澶у唴瀛�: {}m  宸插垎閰嶅唴瀛�: {}m  宸插垎閰嶅唴瀛樹腑鐨勫墿浣欑┖闂�: {}m  鏈�澶у彲鐢ㄥ唴瀛�: {}m",
                     new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(endTime),
                     request.getRequestURI(),
                     DateUtils.formatDateTime(endTime.getTime() - beginTime),
@@ -101,15 +101,15 @@ public class ControllerAspect {
                     (Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory() + Runtime.getRuntime().freeMemory()) / 1024 / 1024);
         }
         log.info("\n/====================================================================" +
-                        "\n请求来源: {}" +
-                        "\n请求URL: {}" +
-                        "\n请求方式: {}" +
-                        "\n响应方法: {},{}" +
-                        "\n请求参数: {}" +
+                        "\n璇锋眰鏉ユ簮: {}" +
+                        "\n璇锋眰URL: {}" +
+                        "\n璇锋眰鏂瑰紡: {}" +
+                        "\n鍝嶅簲鏂规硶: {},{}" +
+                        "\n璇锋眰鍙傛暟: {}" +
                         "\nAuthorization: {}" +
                         "\nUser-Agent: {}" +
-                        "\n耗时: {} ms" +
-                        "\n返回数据: {}" +
+                        "\n鑰楁椂: {} ms" +
+                        "\n杩斿洖鏁版嵁: {}" +
                         "\n====================================================================/",
                 request.getRemoteAddr(),
                 request.getRequestURL(),
@@ -151,7 +151,7 @@ public class ControllerAspect {
     }
 
     /**
-     * 异常通知
+     * 寮傚父閫氱煡
      *
      * @param joinPoint
      * @param e
@@ -164,10 +164,10 @@ public class ControllerAspect {
 
 
     /**
-     * 获取注解中对方法的描述信息 用于Controller层注解
+     * 鑾峰彇娉ㄨВ涓鏂规硶鐨勬弿杩颁俊鎭� 鐢ㄤ簬Controller灞傛敞瑙�
      *
-     * @param joinPoint 切点
-     * @return 方法描述
+     * @param joinPoint 鍒囩偣
+     * @return 鏂规硶鎻忚堪
      */
     public static String getControllerMethodDescription2(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
