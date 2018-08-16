@@ -24,8 +24,6 @@ import java.io.IOException;
 /**
  * @author hsky www.servingcloud.com
  * @since 2017骞�6鏈�5鏃� 涓嬪崍12:32:43
- * 
- * test git commit
  */
 @Configuration
 @EnableCaching
